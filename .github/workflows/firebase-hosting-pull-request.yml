@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install && npm run build
-        working-directory: ./
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MIGRAWAISE }}'
           projectId: migrawise
+          app: MigraApp01
