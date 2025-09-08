@@ -11,13 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configurar archivo de clave de Firebase
-        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}" > $GITHUB_WORKSPACE/firebase-key.json
-
-      - name: Instalar Firebase CLI
-        run: npm install -g firebase-tools
-
-      - name: Deploy a Firebase
-        run: firebase deploy --project 1040080445514
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: $GITHUB_WORKSPACE/firebase-key.json
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}"
+          projectId: 1040080445514
